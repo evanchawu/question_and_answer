@@ -1,0 +1,13 @@
+<%= simple_form_for(@question) do |f| %>
+  <%= f.input :content, label:false, placeholder:'請填寫問題' %>
+  <%= f.input :is_online %>
+
+  <%= f.simple_fields_for(:answers) do |answer| %>
+    <%= render 'answer_fields', f: answer if @question.answers.any? %>
+  <% end %>
+
+  <div class="links">
+    <%= link_to_add_association '新增選項', f, :answers, class:'btn btn-success' %>
+    <%= f.button :submit %>
+  </div>
+<% end %>
